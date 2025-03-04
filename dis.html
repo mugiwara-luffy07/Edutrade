@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Forum - StackOverflow Style</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #3B82F6;
+      --secondary-color: #1E40AF;
+      --light-gray: #F3F4F6;
+      --dark-gray: #4B5563;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #F9FAFB;
+    }
+    .navbar {
+      background-color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+         align-items: center;
+        }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+    .main-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 2rem auto;
+      gap: 2rem;
+    }
+    .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+    .nav-link:hover {
+            color: var(--primary-color);
+        }
+    .sidebar {
+      width: 25%;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .topic {
+      padding: 0.8rem;
+      border-bottom: 1px solid var(--light-gray);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .topic:hover {
+      background: var(--light-gray);
+    }
+    .thread-container {
+      width: 75%;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .thread {
+      border-bottom: 1px solid var(--light-gray);
+      padding: 1rem 0;
+    }
+    .vote-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 1rem;
+    }
+    .vote-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--dark-gray);
+    }
+    .vote-btn:hover {
+      color: var(--primary-color);
+    }
+    .new-thread {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+    .new-thread textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid var(--light-gray);
+      border-radius: 4px;
+      resize: vertical;
+    }
+    .new-thread button {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .reply-section {
+      margin-left: 2rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--light-gray);
+    }
+    .reply {
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">EduTrade</div>
+            <div class="nav-links">
+                <a href="hom.html" class="nav-link">Home</a>
+                <a href="freelance.html" class="nav-link">Free Lancing</a>
+                <a href="dis.html" class="nav-link">Discussions</a>
+                <a href="ss.html" class="nav-link active">Discover</a>
+                <a href="#" class="nav-link">My Sessions</a>
+                <!-- <a href="#" class="nav-link">Community</a>!-->
+                
+                <a href="p.html" class="nav-link">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+  <div class="main-container">
+    <!-- Sidebar: Topic Selection -->
+    <aside class="sidebar">
+      <h3>Topics</h3>
+      <div class="topic" onclick="loadThreads('Python Programming')">Python Programming</div>
+      <div class="topic" onclick="loadThreads('Web Development')">Web Development</div>
+      <div class="topic" onclick="loadThreads('Machine Learning')">Machine Learning</div>
+      <div class="topic" onclick="loadThreads('UI/UX Design')">UI/UX Design</div>
+    </aside>
+
+    <!-- Main Forum Threads -->
+    <section class="thread-container" id="threadContainer">
+      <h2>Discussion Threads</h2>
+      <div id="threadsList"></div>
+
+      <!-- New Thread Creation -->
+      <div class="new-thread">
+        <textarea id="newThreadText" placeholder="Start a new discussion..."></textarea>
+        <button onclick="addThread()">Post</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let threads = {
+      "Python Programming": [
+        { content: "What are some good Python projects?", votes: 5, replies: [] },
+        { content: "Best way to learn OOP in Python?", votes: 3, replies: [] }
+      ],
+      "Web Development": [
+        { content: "React vs Vue - which one to choose?", votes: 4, replies: [] }
+      ],
+      "Machine Learning": [],
+      "UI/UX Design": []
+    };
+
+    function loadThreads(topic) {
+      const threadContainer = document.getElementById('threadsList');
+      threadContainer.innerHTML = "";
+      threads[topic].forEach((thread, index) => {
+        threadContainer.innerHTML += `
+          <div class="thread">
+            <div style="display: flex;">
+              <div class="vote-section">
+                <button class="vote-btn" onclick="vote('${topic}', ${index}, 1)">▲</button>
+                <div>${thread.votes}</div>
+                <button class="vote-btn" onclick="vote('${topic}', ${index}, -1)">▼</button>
+              </div>
+              <div>
+                <p>${thread.content}</p>
+                <button onclick="reply('${topic}', ${index})">Reply</button>
+                <div class="reply-section" id="replies-${topic}-${index}"></div>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function vote(topic, index, change) {
+      threads[topic][index].votes += change;
+      loadThreads(topic);
+    }
+
+    function reply(topic, index) {
+      const replyText = prompt("Your reply:");
+      if (replyText) {
+        threads[topic][index].replies.push(replyText);
+        document.getElementById(`replies-${topic}-${index}`).innerHTML += `<div class="reply">${replyText}</div>`;
+      }
+    }
+
+    function addThread() {
+      const topic = document.querySelector(".topic.active")?.innerText || "Python Programming";
+      const text = document.getElementById("newThreadText").value;
+      if (text) {
+        threads[topic].push({ content: text, votes: 0, replies: [] });
+        loadThreads(topic);
+      }
+    }
+  </script>
+</body>
+</html>

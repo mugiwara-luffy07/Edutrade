@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap Profile & Dashboard</title>
+    <link rel="stylesheet" href="p.css">
+    <style>
+        .verified-badge {
+            margin-left: 10px;
+            color: green;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Skill<br>Swap</h1>
+        <input class="search-bar" type="text" placeholder="Search skills...">
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-container">
+        <div class="profile">
+            <img id="profilePic" src="https://via.placeholder.com/150" alt="Profile Image">
+            <div class="profile-info">
+                <h2 id="profileName">Akash</h2>
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>Your profile markets your skills. Highlight your expertise and attract the right opportunities.</p>
+                <div class="button-container">
+                    <button class="button">Message</button>
+                    <button class="button" onclick="openPopup()">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Offered Section -->
+        <div class="skills-section">
+            <h2>Skills Offered</h2>
+            <div class="skills-grid" id="skillsGrid">
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                    <p>GitHub</p>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <p>Git</p>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
+                    <p>Azure DevOps</p>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                    <p>VS Code</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+            <h2>Reviews</h2>
+            <div class="reviews">
+                <div class="review-card">
+                    <p>"Akash delivered outstanding results! Great work."</p>
+                    <p>⭐⭐⭐⭐⭐</p>
+                    <p>- Client A</p>
+                </div>
+                <div class="review-card">
+                    <p>"Very skilled with GitHub and Azure."</p>
+                    <p>⭐⭐⭐⭐⭐</p>
+                    <p>- Client B</p>
+                </div>
+            </div>
+            <textarea placeholder="Write your review here"></textarea>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <ul>
+                <li>
+                    <span>Active Sessions:</span> 5
+                    <button class="button">View Details</button>
+                </li>
+                <li>
+                    <span>Skills Exchanged:</span> 10
+                    <button class="button">Track</button>
+                </li>
+                <li>
+                    <span>Pending Requests:</span> 3
+                    <button class="button">Respond</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Popup Section -->
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+        <h3>Edit Profile</h3>
+        <input type="file" id="profilePicInput" accept="image/*" placeholder="Upload profile picture">
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <textarea id="bioInput" placeholder="Enter your bio"></textarea>
+        <input type="text" id="skillsInput" placeholder="Enter your skills">
+        
+        <!-- Tutor Option -->
+        <div class="tutor-option">
+            <label>Are you a Tutor?</label>
+            <div>
+                <input type="radio" name="tutor" id="tutorYes" value="yes"> Yes
+                <input type="radio" name="tutor" id="tutorNo" value="no" checked> No
+            </div>
+        </div>
+        
+        <div class="popup-buttons">
+            <button class="button" onclick="closePopup()">Cancel</button>
+            <button class="button" onclick="saveProfile()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const popup = document.getElementById('popup');
+        const profileName = document.getElementById('profileName');
+        const profilePic = document.getElementById('profilePic');
+        const profilePicInput = document.getElementById('profilePicInput');
+        const nameInput = document.getElementById('nameInput');
+        const skillsInput = document.getElementById('skillsInput');
+        const skillsGrid = document.getElementById('skillsGrid');
+        const tutorYes = document.getElementById('tutorYes');
+        const tutorNo = document.getElementById('tutorNo');
+        let isTutor = false; // Track tutor status
+
+        // Skill-to-Image mapping
+        const skillImages = {
+            html: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+            css: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+            python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+            javascript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+            github: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+            git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+            azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+            vscode: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg'
+        };
+
+        function openPopup() {
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+        }
+
+        function closePopup() {
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+        }
+
+        function saveProfile() {
+            // Update profile picture if a new one is selected
+            if (profilePicInput.files && profilePicInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profilePic.src = e.target.result; // Update the profile picture
+                };
+                reader.readAsDataURL(profilePicInput.files[0]);
+            }
+
+            // Update profile name if entered
+            if (nameInput.value.trim()) {
+                profileName.innerText = nameInput.value.trim();
+            }
+
+            // Update skills dynamically
+            const newSkills = skillsInput.value.split(',').map(skill => skill.trim()).filter(skill => skill);
+            if (newSkills.length > 0) {
+                updateSkills(newSkills);
+            }
+
+            // Update tutor status
+            isTutor = tutorYes.checked;
+            updateTutorBadge();
+
+            closePopup(); // Close the popup
+        }
+
+        function updateSkills(newSkills) {
+            newSkills.forEach(skill => {
+                // Check if the skill already exists
+                if ([...skillsGrid.children].some(child => child.querySelector('p').textContent.toLowerCase() === skill.toLowerCase())) {
+                    alert(`${skill} is already added.`);
+                    return;
+                }
+
+                // Create a new skill element
+                const skillDiv = document.createElement('div');
+                skillDiv.classList.add('skill');
+
+                // Add skill image or placeholder
+                const img = document.createElement('img');
+                img.src = skillImages[skill.toLowerCase()] || 'https://via.placeholder.com/60?text=Skill';
+                img.alt = skill;
+
+                // Add skill name
+                const p = document.createElement('p');
+                p.textContent = skill;
+
+                // Append to grid
+                skillDiv.appendChild(img);
+                skillDiv.appendChild(p);
+                skillsGrid.appendChild(skillDiv);
+            });
+        }
+
+        function updateTutorBadge() {
+            // Check if badge already exists
+            let badge = document.querySelector('.verified-badge');
+            if (isTutor) {
+                if (!badge) {
+                    badge = document.createElement('span');
+                    badge.classList.add('verified-badge');
+                    badge.textContent = '✔️ Tutor';
+                    profileName.parentElement.appendChild(badge);
+                }
+            } else {
+                if (badge) {
+                    badge.remove();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

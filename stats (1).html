@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Learning Platform Statistics</title>
+    <style>
+        /* ... (previous styles remain the same until revenue-bar) ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .platform {
+            margin-bottom: 15px;
+        }
+
+        .platform-name {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #4b5563;
+        }
+
+        .bar-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .barU {
+            height: 24px;
+            background-color: #a334ef;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .barC {
+            height: 24px;
+            background-color: blue;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .barL {
+            height: 24px;
+            background-color: #076acc;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .barG {
+            height: 24px;
+            background-color: #0bb94a;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .bar {
+            height: 24px;
+            background-color: #4f51fe;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .total-users {
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        /* Updated Revenue Bar Styles */
+        .revenue-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            min-height: 32px;
+        }
+
+        .revenue-barL {
+            height: 32px;
+            background-color: #076acc;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .revenue-barU {
+            height: 32px;
+            background-color: #a334ef;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .revenue-barC {
+            height: 32px;
+            background-color: blue;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .revenue-barG {
+            height: 32px;
+            background-color: #0bb94a;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .revenue-bar {
+            height: 32px;
+            background-color: #4f51fe;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .revenue-text {
+            font-size: 14px;
+            color: #4b5563;
+            margin-left: 10px;
+        }
+
+        /* Payment Range Styles */
+        .payment-range {
+            height: 32px;
+            background-color: rgb(255, 174, 0);
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            margin-bottom: 12px;
+        }
+
+        .insights {
+            background-color: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .insights ul {
+            list-style-type: none;
+        }
+
+        .insights li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .insights li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        .free-tier {
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ... (previous content remains the same until Platform Revenue section) ... -->
+        <h1>SkillSwap: Transforming Online Education Accessibility
+            <br><br>
+            Online Learning Platform Statistics 2023-2025</h1>
+
+        <!-- Platform Users Comparison -->
+        <div class="section">
+            <!-- ... (Platform Users Comparison content remains the same) ... -->
+            <br><br><h2>Platform Users Comparison</h2>
+            
+            <div class="platform">
+                <div class="platform-name">Udemy</div>
+                <div class="bar-container">
+                    <div class="barU" style="width: 35%;">Paying Users: 70M (35%)</div>
+                    <div class="total-users">Total Users: 200M</div>
+                </div>
+            </div>
+
+            <div class="platform">
+                <div class="platform-name">Coursera</div>
+                <div class="bar-container">
+                    <div class="barC" style="width: 50%;">Paying Users: 43.5M (50%)</div>
+                    <div class="total-users">Total Users: 87M</div>
+                </div>
+            </div>
+
+            <div class="platform">
+                <div class="platform-name">LinkedIn Learning</div>
+                <div class="bar-container">
+                    <div class="barL" style="width: 35%;">Paying Users: 7M (35%)</div>
+                    <div class="total-users">Total Users: 20M</div>
+                </div>
+            </div>
+
+            <div class="platform">
+                <div class="platform-name">Guvi</div>
+                <div class="bar-container">
+                    <div class="barG" style="width: 40%;">Paying Users: 0.8M (40%)</div>
+                    <div class="total-users">Total Users: 2M</div>
+                </div>
+            </div>
+
+            <div class="platform">
+                <div class="platform-name">SkillSwap</div>
+                <div class="bar-container">
+                    <div class="bar" style="width: 1%;"></div>
+                    <div class="total-users">0% paying users</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform Revenue -->
+        <div class="section">
+            <h2>Platform Revenue (2023)</h2>
+            
+            <div class="revenue-container">
+                <div class="revenue-barL" style="width: 100%;">LinkedIn Learning: ₹166.5B</div>
+            </div>
+            <div class="revenue-container">
+                <div class="revenue-barU" style="width: 75%;">Udemy: ₹49.8B - ₹63B</div>
+            </div>
+            <div class="revenue-container">
+                <div class="revenue-barC" style="width: 60%;">Coursera: ₹41.5B - ₹58B</div>
+            </div>
+            <div class="revenue-container">
+                <div class="revenue-barG" style="width: 20%;">Guvi: ₹0.83B - ₹1.66B</div>
+            </div>
+            <div class="revenue-container">
+                <div class="revenue-bar" style="width: 10%;"></div>
+                <div class="revenue-text">SkillSwap: (Ad revenue , partnerships & Sponsorships)</div>
+            </div>
+        </div>
+
+        <!-- Average Payment Range -->
+        <div class="section">
+            <h2>Average Payment Range</h2>
+            
+            <div class="payment-range">Avg expenses of Courses: ₹12,450 - ₹24,900</div>
+            <div class="payment-range">Annual Subscription: ₹16,600 - ₹24,900</div>
+            <div class="payment-range free-tier">SkillSwap: ₹0 (Free skill exchange)</div>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="section insights">
+            <h2>Key Insights:</h2>
+            <ul>
+                <li>COST COMPARISION : SkillSwap eliminates fees, reducing student expenses to ₹0 compared to high-paying platforms.</li>
+                <li>USER ENGAGEMENT : SkillSwap's cost-free model could attract many users, including students and professionals.</li>
+                <li>REVENUE SOURCE : SkillSwap relies on ads and sponsorships, unlike subscriptions or course payments.</li>
+                <li>IMPACT : A potential 60%-80% reduction in student dependence on paid courses for learning.</li>
+                <li>TEACHING SKILL : A platform where you can learn as well as you can teach to other learners</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+ BEGIN:VCALENDAR
+PRODID:-//Coursera//Learner Study Calendar 1.0//EN
+NAME:Coursera Study Calendar
+X-WR-CALNAME:Coursera Study Calendar
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTAMP:20250114T045736Z
+DTSTART;VALUE=DATE:20250120
+DTEND;VALUE=DATE:20250121
+SUMMARY:Coursera learning time
+UID:2025-01-14T10:27:36.927948947~courseraorg
+DESCRIPTION:You’ve set a weekly learning goal on Coursera. Today is a day
+  you've committed to advancing in your courses as part of your goal to l
+ earn on Monday.\n\nKeep up the great work and access your learning dashb
+ oard to continue making progress:\n\nhttps://www.coursera.org/my-learnin
+ g\n\nRemember\, consistency is vital to success. Let’s make every learni
+ ng session count!\n
+RRULE:FREQ=WEEKLY;WKST=SU;BYDAY=MO
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250114T045736Z
+DTSTART;VALUE=DATE:20250115
+DTEND;VALUE=DATE:20250116
+SUMMARY:Coursera learning time
+UID:2025-01-14T10:27:36.928383733~courseraorg
+DESCRIPTION:You’ve set a weekly learning goal on Coursera. Today is a day
+  you've committed to advancing in your courses as part of your goal to l
+ earn on Wednesday.\n\nKeep up the great work and access your learning da
+ shboard to continue making progress:\n\nhttps://www.coursera.org/my-lear
+ ning\n\nRemember\, consistency is vital to success. Let’s make every lea
+ rning session count!\n
+RRULE:FREQ=WEEKLY;WKST=SU;BYDAY=WE
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250114T045736Z
+DTSTART;VALUE=DATE:20250117
+DTEND;VALUE=DATE:20250118
+SUMMARY:Coursera learning time
+UID:2025-01-14T10:27:36.928435288~courseraorg
+DESCRIPTION:You’ve set a weekly learning goal on Coursera. Today is a day
+  you've committed to advancing in your courses as part of your goal to l
+ earn on Friday.\n\nKeep up the great work and access your learning dashb
+ oard to continue making progress:\n\nhttps://www.coursera.org/my-learnin
+ g\n\nRemember\, consistency is vital to success. Let’s make every learni
+ ng session count!\n
+RRULE:FREQ=WEEKLY;WKST=SU;BYDAY=FR
+END:VEVENT
+END:VCALENDAR

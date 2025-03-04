@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeLance Hub - Connect with Top Freelancers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366F1;
+            --secondary-color: #4F46E5;
+            --success-color: #059669;
+            --light-gray: #F3F4F6;
+            --dark-gray: #4B5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #F9FAFB;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .search-section {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .filter-dropdown {
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .freelancers-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .freelancer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .freelancer-card:hover {
+            transform: translateX(5px);
+        }
+
+        .freelancer-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 2;
+        }
+
+        .freelancer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            flex-shrink: 0;
+        }
+
+        .freelancer-details {
+            flex: 1;
+        }
+
+        .freelancer-name {
+            font-weight: bold;
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .freelancer-title {
+            color: var(--dark-gray);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            color: #FFA500;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-section {
+            flex: 3;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background-color: #EEF2FF;
+            color: var(--primary-color);
+        }
+
+        .pricing-section {
+            flex: 1;
+            text-align: right;
+        }
+
+        .price-tag {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .completed-projects {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .action-button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .action-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @media (max-width: 968px) {
+            .freelancer-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .freelancer-info {
+                width: 100%;
+            }
+
+            .skills-section {
+                width: 100%;
+            }
+
+            .pricing-section {
+                width: 100%;
+                text-align: left;
+            }
+
+            .action-button {
+                max-width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">FreeLance Hub</div>
+            <div class="nav-links">
+                <a href="hom.html" class="nav-link">Home</a>
+                <a href="freelance.html" class="nav-link">Free Lancing</a>
+                <a href="dis.html" class="nav-link">Discussions</a>
+                <a href="ss.html" class="nav-link active">Discover</a>
+                <a href="#" class="nav-link">My Sessions</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="search-section">
+            <input type="text" class="search-bar" placeholder="Search for freelancers, skills, or services...">
+            <select class="filter-dropdown">
+                <option value="">All Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="writing">Writing</option>
+                <option value="marketing">Marketing</option>
+            </select>
+        </section>
+
+        <section class="freelancers-grid" id="freelancersGrid">
+            <!-- Freelancer cards will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <script>
+        // Sample data - In a real application, this would come from an API
+        const freelancers = [
+            {
+                name: "Alex Morgan",
+                title: "Full Stack Developer",
+                rating: 4.9,
+                hourlyRate: 85,
+                skills: ["React", "Node.js", "MongoDB", "AWS"],
+                completedProjects: 47
+            },
+            {
+                name: "Jessica Chen",
+                title: "UI/UX Designer",
+                rating: 4.8,
+                hourlyRate: 75,
+                skills: ["Figma", "Adobe XD", "Webflow", "Prototyping"],
+                completedProjects: 36
+            },
+            {
+                name: "David Kumar",
+                title: "Digital Marketing Specialist",
+                rating: 4.7,
+                hourlyRate: 65,
+                skills: ["SEO", "Content Strategy", "Social Media", "Google Ads"],
+                completedProjects: 52
+            },
+            {
+                name: "Sarah Wilson",
+                title: "Technical Writer",
+                rating: 4.9,
+                hourlyRate: 55,
+                skills: ["Documentation", "API Docs", "Technical Writing", "Content"],
+                completedProjects: 41
+            },
+            {
+                name: "Michael Zhang",
+                title: "Mobile App Developer",
+                rating: 4.8,
+                hourlyRate: 90,
+                skills: ["iOS", "Android", "React Native", "Flutter"],
+                completedProjects: 33
+            }
+        ];
+
+        function createFreelancerCard(freelancer) {
+            return `
+                <div class="freelancer-card">
+                    <div class="freelancer-info">
+                        <div class="freelancer-avatar"></div>
+                        <div class="freelancer-details">
+                            <div class="freelancer-name">${freelancer.name}</div>
+                            <div class="freelancer-title">${freelancer.title}</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                ${freelancer.rating}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skills-section">
+                        <div class="skills-list">
+                            ${freelancer.skills.map(skill => `
+                                <span class="skill-tag">${skill}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="pricing-section">
+                        <div class="price-tag">$${freelancer.hourlyRate}/hour</div>
+                        <div class="completed-projects">
+                            <i class="fas fa-check-circle"></i> ${freelancer.completedProjects} projects completed
+                        </div>
+                        <button class="action-button">Contact Freelancer</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function initializeFreelancersGrid() {
+            const freelancersGrid = document.getElementById('freelancersGrid');
+            freelancers.forEach(freelancer => {
+                freelancersGrid.innerHTML += createFreelancerCard(freelancer);
+            });
+        }
+
+        // Search functionality
+        const searchBar = document.querySelector('.search-bar');
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const freelancersGrid = document.getElementById('freelancersGrid');
+            freelancersGrid.innerHTML = '';
+            
+            const filteredFreelancers = freelancers.filter(freelancer => {
+                return freelancer.name.toLowerCase().includes(searchTerm) ||
+                    freelancer.title.toLowerCase().includes(searchTerm) ||
+                    freelancer.skills.some(skill => skill.toLowerCase().includes(searchTerm));
+            });
+
+            filteredFreelancers.forEach(freelancer => {
+                freelancersGrid.innerHTML += createFreelancerCard(freelancer);
+            });
+        });
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeFreelancersGrid();
+        });
+    </script>
+</body>
+</html>

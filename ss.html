@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Trade - Peer Learning Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3B82F6;
+            --secondary-color: #1E40AF;
+            --light-gray: #F3F4F6;
+            --dark-gray: #4B5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #F9FAFB;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .search-section {
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            margin-right: 1rem;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .rating {
+            color: #FFA500;
+            margin-left: auto;
+        }
+
+        .skills-section {
+            margin: 1rem 0;
+        }
+
+        .skills-title {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .teaching {
+            background-color: #E0F2F1;
+            color: #00897B;
+        }
+
+        .learning {
+            background-color: #E3F2FD;
+            color: #1976D2;
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .action-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Edu Trade</div>
+            <div class="nav-links">
+                <a href="hom.html" class="nav-link">Home</a>
+                <a href="dis.html" class="nav-link">Discussions</a>
+                <a href="ss.html" class="nav-link active">Discover</a>
+                <a href="#" class="nav-link">My Sessions</a>
+                <!-- <a href="#" class="nav-link">Community</a> -->
+                <a href="p.html" class="nav-link">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="search-section">
+            <input type="text" class="search-bar" placeholder="Search for skills or users...">
+        </section>
+
+        <section class="skills-grid" id="skillsGrid">
+            <!-- Skills cards will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <script>
+        // Sample data - In a real application, this would come from an API
+        const users = [
+            {
+                name: "Sarah Chen",
+                rating: 4.8,
+                teaching: ["Python", "Data Science", "Machine Learning"],
+                learning: ["UI Design", "React Native"],
+                sessions: 24
+            },
+            {
+                name: "Mike Tyson",
+                rating: 4.9,
+                teaching: ["JavaScript", "React", "Node.js"],
+                learning: ["Python", "AWS"],
+                sessions: 31
+            },
+            {
+                name: "Emma Wilson",
+                rating: 3.7,
+                teaching: ["UI Design", "Figma", "Adobe XD"],
+                learning: ["JavaScript", "Vue.js"],
+                sessions: 18
+            },
+            {
+                name: "Harry styles",
+                rating: 4.7,
+                teaching: ["unity", "photoshop", "blender"],
+                learning: ["unreal", "Aerodynamics"],
+                sessions: 18
+            },
+            {
+                name: "Tom Cruise",
+                rating: 5.0,
+                teaching: ["Could Computing", "Networing", "Data Science"],
+                learning: ["Flask", "React"],
+                sessions: 25 
+            }
+        ];
+
+        // Function to create a skill card
+        function createSkillCard(user) {
+            return `
+                <div class="skill-card">
+                    <div class="user-info">
+                        <div class="user-avatar"></div>
+                        <div class="user-details">
+                            <div class="user-name">${user.name}</div>
+                            <div class="sessions">${user.sessions} Sessions Taken</div>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            ${user.rating}
+                        </div>
+                    </div>
+                    <div class="skills-section">
+                        <div class="skills-title">Teaching</div>
+                        <div class="skills-list">
+                            ${user.teaching.map(skill => `
+                                <span class="skill-tag teaching">${skill}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="skills-section">
+                        <div class="skills-title">Learning</div>
+                        <div class="skills-list">
+                            ${user.learning.map(skill => `
+                                <span class="skill-tag learning">${skill}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <button class="action-button">Schedule Session</button>
+                </div>
+            `;
+        }
+
+        // Function to initialize the skills grid
+        function initializeSkillsGrid() {
+            const skillsGrid = document.getElementById('skillsGrid');
+            users.forEach(user => {
+                skillsGrid.innerHTML += createSkillCard(user);
+            });
+        }
+
+        // Search functionality
+        const searchBar = document.querySelector('.search-bar');
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const skillsGrid = document.getElementById('skillsGrid');
+            skillsGrid.innerHTML = '';
+            
+            const filteredUsers = users.filter(user => {
+                const allSkills = [...user.teaching, ...user.learning];
+                return user.name.toLowerCase().includes(searchTerm) ||
+                    allSkills.some(skill => skill.toLowerCase().includes(searchTerm));
+            });
+
+            filteredUsers.forEach(user => {
+                skillsGrid.innerHTML += createSkillCard(user);
+            });
+        });
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSkillsGrid();
+        });
+    </script>
+</body>
+</html>

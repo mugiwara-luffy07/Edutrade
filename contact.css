@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body{
+    margin-top: 65px;
+    background-color: #F14C38;
+}
+.container{
+    display: flex;
+   background-color: white;     
+   border: transparent;
+   border-radius: 60px;
+   width: 1253px;
+   height: 840px;
+   box-shadow: 0px 4px 30px 20px rgba(0,0,0,0.25);
+}
+.left, .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.left h1{
+    font-family: sans-serif;
+    color: #4F51FE;
+    font-size: 45px;
+    text-align: left;
+    align-self: flex-start;
+    
+}
+.left p{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+   
+}
+.left h1,p{
+  padding-bottom: 15px;
+}
+.name{
+   border: solid #4F51FE;
+    border-width: 2px;
+    border-radius: 12px;
+    width: 533px;
+    height: 54px; 
+    font-size: 24px;  
+    padding-left: 15px;
+
+}
+.email{
+    border: solid #4F51FE;
+    border-width: 2px;
+    border-radius: 12px;
+    width: 533px;
+    height: 54px; 
+    font-size: 24px;  
+    padding-left: 15px;
+    
+ 
+ }
+ .message{
+    border: solid #4F51FE;
+    border-width: 2px;
+    border-radius: 12px;
+    width: 533px;
+    height: 176px;
+    font-size: 24px;
+    padding-left: 15px;
+}
+
+input::placeholder{
+    font-size: 24px;
+    padding-left:15px;
+    vertical-align: top;
+    text-align: left;
+    
+}
+ label{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    font-family: sans-serif;
+    margin-top: 30px;
+    align-self: flex-start;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+button{
+    background-color: #4F51FE;
+    width: 548px;
+    height: 64px;
+    font-size: 24px;
+    color: white;
+    border: transparent;
+    border-radius: 12px;
+    margin-top: 30px;
+
+}
+
+
+.pics{
+    display: flex; /* Ensures the images are laid out horizontally */
+    justify-content: center; /* Centers the images in the available space */
+    gap: 20px; /* Adds space between the images */
+    margin-top: 20px; 
+}
+a{
+    font-size: 16x;
+    color: #4F51FE;
+    margin: 15px;
+    text-decoration: none;
+    
+}
+.contact-row{
+    display: flex;
+   align-items: center;
+   width: 100%;
+   
+   
+
+}
+.message::placeholder{
+    align-self: flex-start;
+   
+}
+
+.message {
+    border: solid #4F51FE;
+    border-width: 2px;
+    border-radius: 12px;
+    width: 533px;
+    height: 176px;
+    font-size: 24px;
+    padding: 15px; /* Add padding for consistent spacing */
+    line-height: 1.5; /* Adjusts the line spacing inside the input */
+    vertical-align: top; /* Ensures text aligns at the top */
+}
+
+.message::placeholder {
+    font-size: 24px;
+    line-height: 1.5; /* Matches the line spacing of the input */
+    text-align: left;
+    color: #999; /* Optional: placeholder color for better visibility */
+}
+
+.c{
+    margin-bottom: 25px;
+}
